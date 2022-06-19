@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ideamerry.repair.dao.WxUserDao">
+
+
+    <resultMap id="BaseResultMap" type="com.ideamerry.repair.entity.WxUser">
+        <result property="id" column="id"/>
+        <result property="openid" column="openid"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="language" column="language"/>
+        <result property="uId" column="uId"/>
+        <result property="city" column="city"/>
+        <result property="gender" column="gender"/>
+        <result property="province" column="province"/>
+        <result property="avatarUrl" column="avatar_url"/>
+        <result property="createDate" column="create_date"/>
+        <result property="email" column="email"/>
+        <result property="unionid" column="unionid"/>
+        <result property="createTime" column="create_time"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="type" column="type"/>
+        <result property="mobile" column="mobile"/>
+        <result property="cardNumber" column="card_number"/>
+        <result property="realName" column="real_name"/>
+        <result property="isBindingMobile" column="is_binding_mobile"/>
+        <result property="otherOpenid" column="other_openid"/>
+        <result property="campus" column="campus"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select wx_user.id,
+               wx_user.openid,
+               wx_user.nick_name,
+               wx_user.language,
+               wx_user.uId,
+               wx_user.city,
+               wx_user.gender,
+               wx_user.province,
+               wx_user.avatar_url,
+               wx_user.create_date,
+               wx_user.email,
+               wx_user.unionid,
+               wx_user.create_time,
+               wx_user.is_delete,
+               wx_user.type,
+               wx_user.mobile,
+               wx_user.card_number,
+               wx_user.real_name,
+               wx_user.is_binding_mobile,
+               wx_user.other_openid,
+               wx_user.campus
+        from wx_user
+        where wx_user.id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select wx_user.id,
+               wx_user.openid,
+               wx_user.nick_name,
+               wx_user.language,
+               wx_user.uId,
+               wx_user.city,
+               wx_user.gender,
+               wx_user.province,
+               wx_user.avatar_url,
+               wx_user.create_date,
+               wx_user.email,
+               wx_user.unionid,
+               wx_user.create_time,
+               wx_user.is_delete,
+               wx_user.type,
+               wx_user.mobile,
+               wx_user.card_number,
+               wx_user.real_name,
+               wx_user.is_binding_mobile,
+               wx_user.other_openid,
+               wx_user.campus
+        from wx_user limit #{offset}, #{limit}
+    </select>
+
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        wx_user.id,wx_user.openid,wx_user.nick_name,wx_user.language,wx_user.uId,wx_user.city,wx_user.gender,wx_user.province,wx_user.avatar_url,wx_user.create_date,wx_user.email,wx_user.unionid,wx_user.create_time,wx_user.is_delete,wx_user.type,wx_user.mobile,wx_user.card_number,wx_user.real_name,wx_user.is_binding_mobile,wx_user.other_openid,wx_user.campus
+        from wx_user
+        <where>
+            <if test="id != null">
+                and wx_user.id = #{id}
+            </if>
+            <if test="openid != null and openid != ''">
+                and wx_user.openid = #{openid}
+            </if>
+            <if test="nickName != null and nickName != ''">
+                and wx_user.nick_name = #{nickName}
+            </if>
+            <if test="language != null and language != ''">
+                and wx_user.language = #{language}
+            </if>
+            <if test="uId != null">
+                and wx_user.uId = #{uId}
+            </if>
+            <if test="city != null and city != ''">
+                and wx_user.city = #{city}
+            </if>
+            <if test="gender != null">
+                and wx_user.gender = #{gender}
+            </if>
+            <if test="province != null and province != ''">
+                and wx_user.province = #{province}
+            </if>
+            <if test="avatarUrl != null and avatarUrl != ''">
+                and wx_user.avatar_url = #{avatarUrl}
+            </if>
+            <if test="createDate != null">
+                and wx_user.create_date = #{createDate}
+            </if>
+            <if test="email != null and email != ''">
+                and wx_user.email = #{email}
+            </if>
+            <if test="unionid != null and unionid != ''">
+                and wx_user.unionid = #{unionid}
+            </if>
+            <if test="createTime != null">
+                and wx_user.create_time = #{createTime}
+            </if>
+            <if test="isDelete != null">
+                and wx_user.is_delete = #{isDelete}
+            </if>
+            <if test="type != null">
+                and wx_user.type = #{type}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and wx_user.mobile = #{mobile}
+            </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                and wx_user.card_number = #{cardNumber}
+            </if>
+            <if test="realName != null and realName != ''">
+                and wx_user.real_name = #{realName}
+            </if>
+            <if test="isBindingMobile != null">
+                and wx_user.is_binding_mobile = #{isBindingMobile}
+            </if>
+            <if test="otherOpenid != null and otherOpenid != ''">
+                and wx_user.other_openid = #{otherOpenid}
+            </if>
+            <if test="campus != null and campus != ''">
+                and wx_user.campus = #{campus}
+            </if>
+        </where>
+        order by wx_user.id desc
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into wx_user(openid, nick_name, language, uId, city, gender, province, avatar_url, create_date, email,
+                            unionid, create_time, is_delete, type, mobile, card_number, real_name, is_binding_mobile,
+                            other_openid, campus)
+        values (#{openid}, #{nickName}, #{language}, #{uId}, #{city}, #{gender}, #{province}, #{avatarUrl},
+                #{createDate}, #{email}, #{unionid}, #{createTime}, #{isDelete}, #{type}, #{mobile}, #{cardNumber},
+                #{realName}, #{isBindingMobile}, #{otherOpenid}, #{campus})
+    </insert>
+
+    <!--批量新增所有列-->
+    <insert id="insertBatch">
+        insert into wx_user(
+
+        openid,
+        nick_name,
+        language,
+        uId,
+        city,
+        gender,
+        province,
+        avatar_url,
+        create_date,
+        email,
+        unionid,
+        create_time,
+        is_delete,
+        type,
+        mobile,
+        card_number,
+        real_name,
+        is_binding_mobile,
+        other_openid,
+        campus
+        ) values
+        <foreach collection="list" item="item" separator=",">
+            (
+
+            #{item.openid},
+            #{item.nickName},
+            #{item.language},
+            #{item.uId},
+            #{item.city},
+            #{item.gender},
+            #{item.province},
+            #{item.avatarUrl},
+            #{item.createDate},
+            #{item.email},
+            #{item.unionid},
+            #{item.createTime},
+            #{item.isDelete},
+            #{item.type},
+            #{item.mobile},
+            #{item.cardNumber},
+            #{item.realName},
+            #{item.isBindingMobile},
+            #{item.otherOpenid},
+            #{item.campus})
+        </foreach>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update wx_user
+        <set>
+
+            <if test="openid != null">
+                openid = #{openid },
+            </if>
+
+            <if test="nickName != null">
+                nick_name = #{nickName },
+            </if>
+
+            <if test="language != null">
+                language = #{language },
+            </if>
+
+            <if test="uId != null">
+                uId = #{uId },
+            </if>
+
+            <if test="city != null">
+                city = #{city },
+            </if>
+
+            <if test="gender != null">
+                gender = #{gender },
+            </if>
+
+            <if test="province != null">
+                province = #{province },
+            </if>
+
+            <if test="avatarUrl != null">
+                avatar_url = #{avatarUrl },
+            </if>
+
+            <if test="createDate != null">
+                create_date = #{createDate },
+            </if>
+
+            <if test="email != null">
+                email = #{email },
+            </if>
+
+            <if test="unionid != null">
+                unionid = #{unionid },
+            </if>
+
+            <if test="createTime != null">
+                create_time = #{createTime },
+            </if>
+
+            <if test="isDelete != null">
+                is_delete = #{isDelete },
+            </if>
+
+            <if test="type != null">
+                type = #{type },
+            </if>
+
+            <if test="mobile != null">
+                mobile = #{mobile },
+            </if>
+
+            <if test="cardNumber != null">
+                card_number = #{cardNumber },
+            </if>
+
+            <if test="realName != null">
+                real_name = #{realName },
+            </if>
+
+            <if test="isBindingMobile != null">
+                is_binding_mobile = #{isBindingMobile },
+            </if>
+
+            <if test="otherOpenid != null">
+                other_openid = #{otherOpenid },
+            </if>
+
+            <if test="campus != null">
+                campus = #{campus },
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateByUserName">
+        update wx_user
+        set mobile = #{mobile},
+            type=#{type}
+        where real_name = #{realName}
+    </update>
+
+
+    <!--批量新增所有列-->
+    <update id="updateBatch">
+        <foreach collection="list" separator=";" item="item">
+            update wx_user
+            <set>
+                <if test="openid != null">
+                    openid = #{item.openid },
+                </if>
+                <if test="nickName != null">
+                    nick_name = #{item.nickName },
+                </if>
+                <if test="language != null">
+                    language = #{item.language },
+                </if>
+                <if test="uId != null">
+                    uId = #{item.uId },
+                </if>
+                <if test="city != null">
+                    city = #{item.city },
+                </if>
+                <if test="gender != null">
+                    gender = #{item.gender },
+                </if>
+                <if test="province != null">
+                    province = #{item.province },
+                </if>
+                <if test="avatarUrl != null">
+                    avatar_url = #{item.avatarUrl },
+                </if>
+                <if test="createDate != null">
+                    create_date = #{item.createDate },
+                </if>
+                <if test="email != null">
+                    email = #{item.email },
+                </if>
+                <if test="unionid != null">
+                    unionid = #{item.unionid },
+                </if>
+                <if test="createTime != null">
+                    create_time = #{item.createTime },
+                </if>
+                <if test="isDelete != null">
+                    is_delete = #{item.isDelete },
+                </if>
+                <if test="type != null">
+                    type = #{item.type },
+                </if>
+                <if test="mobile != null">
+                    mobile = #{item.mobile },
+                </if>
+                <if test="cardNumber != null">
+                    card_number = #{item.cardNumber },
+                </if>
+                <if test="realName != null">
+                    real_name = #{item.realName },
+                </if>
+                <if test="isBindingMobile != null">
+                    is_binding_mobile = #{item.isBindingMobile },
+                </if>
+                <if test="otherOpenid != null">
+                    other_openid = #{item.otherOpenid },
+                </if>
+                <if test="campus != null">
+                    campus = #{item.campus },
+                </if>
+            </set>
+            where id = #{id}
+        </foreach>
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from wx_user
+        where id = #{id}
+    </delete>
+
+</mapper>

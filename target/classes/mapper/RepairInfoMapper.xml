@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ideamerry.repair.dao.RepairInfoDao">
+    <resultMap id="BaseResultMap" type="com.ideamerry.repair.entity.RepairInfo">
+        <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="status" column="status"/>
+        <result property="repairDate" column="repair_date"/>
+        <result property="address" column="address"/>
+        <result property="description" column="description"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="message" column="message"/>
+        <result property="evaluate" column="evaluate"/>
+        <result property="reason" column="reason"/>
+        <result property="consumables" column="consumables"/>
+        <result property="applicantName" column="applicant_name"/>
+        <result property="remarks" column="remarks"/>
+        <result property="mobile" column="mobile"/>
+        <result property="star" column="star"/>
+        <result property="radioUrl" column="radio_url"/>
+        <result property="evaluateDate" column="evaluate_date"/>
+        <result property="openid" column="openid"/>
+        <result property="campus" column="campus"/>
+        <result property="finishTime" column="finish_time"/>
+        <result property="allocatedTime" column="allocated_time"/>
+        <result property="detail" column="detail"/>
+        <result property="repairCancelReason" column="repair_cancel_reason"/>
+        <result property="repairCancelReasonRemark" column="repair_cancel_reason_remark"/>
+        <result property="repairCancelDate" column="repair_cancel_date"/>
+        <result property="location" column="location"/>
+        <result property="level" column="level"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select repair_info.id,
+               repair_info.type,
+               repair_info.status,
+               repair_info.repair_date,
+               repair_info.address,
+               repair_info.description,
+               repair_info.image_url,
+               repair_info.message,
+               repair_info.evaluate,
+               repair_info.reason,
+               repair_info.consumables,
+               repair_info.applicant_name,
+               repair_info.remarks,
+               repair_info.mobile,
+               repair_info.star,
+               repair_info.radio_url,
+               repair_info.evaluate_date,
+               repair_info.openid,
+               repair_info.campus,
+               repair_info.finish_time,
+               repair_info.allocated_time,
+               repair_info.detail,
+               repair_info.repair_cancel_reason,
+               repair_info.repair_cancel_reason_remark,
+               repair_info.repair_cancel_date,
+               repair_info.location,
+               repair_info.level
+        from repair_info
+        where repair_info.id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select repair_info.id,
+               repair_info.type,
+               repair_info.status,
+               repair_info.repair_date,
+               repair_info.address,
+               repair_info.description,
+               repair_info.image_url,
+               repair_info.message,
+               repair_info.evaluate,
+               repair_info.reason,
+               repair_info.consumables,
+               repair_info.applicant_name,
+               repair_info.remarks,
+               repair_info.mobile,
+               repair_info.star,
+               repair_info.radio_url,
+               repair_info.evaluate_date,
+               repair_info.openid,
+               repair_info.campus,
+               repair_info.finish_time,
+               repair_info.allocated_time,
+               repair_info.detail,
+               repair_info.repair_cancel_reason,
+               repair_info.repair_cancel_reason_remark,
+               repair_info.repair_cancel_date,
+               repair_info.location,
+               repair_info.level
+        from repair_info limit #{offset}, #{limit}
+    </select>
+
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+        repair_info.id,repair_info.type,repair_info.status,repair_info.repair_date,repair_info.address,repair_info.description,repair_info.image_url,repair_info.message,repair_info.evaluate,repair_info.reason,repair_info.consumables,repair_info.applicant_name,repair_info.remarks,repair_info.mobile,repair_info.star,repair_info.radio_url,repair_info.evaluate_date,repair_info.openid,repair_info.campus,repair_info.finish_time,repair_info.allocated_time,repair_info.detail,repair_info.repair_cancel_reason,repair_info.repair_cancel_reason_remark,repair_info.repair_cancel_date,repair_info.location,repair_info.level
+        from repair_info
+        <where>
+            <if test="id != null">
+                and repair_info.id = #{id}
+            </if>
+            <if test="type != null">
+                and repair_info.type = #{type}
+            </if>
+            <if test="status != null">
+                and repair_info.status = #{status}
+            </if>
+            <if test="repairDate != null">
+                and repair_info.repair_date = #{repairDate}
+            </if>
+            <if test="address != null and address != ''">
+                and repair_info.address like concat('%',#{address},'%')
+            </if>
+            <if test="description != null and description != ''">
+                and repair_info.description like concat('%',#{description},'%')
+            </if>
+            <if test="imageUrl != null and imageUrl != ''">
+                and repair_info.image_url = #{imageUrl}
+            </if>
+            <if test="message != null and message != ''">
+                and repair_info.message = #{message}
+            </if>
+            <if test="evaluate != null and evaluate != ''">
+                and repair_info.evaluate = #{evaluate}
+            </if>
+            <if test="reason != null and reason != ''">
+                and repair_info.reason = #{reason}
+            </if>
+            <if test="consumables != null and consumables != ''">
+                and repair_info.consumables = #{consumables}
+            </if>
+            <if test="applicantName != null and applicantName != ''">
+                and repair_info.applicant_name like concat('%',#{applicantName},'%')
+            </if>
+            <if test="remarks != null and remarks != ''">
+                and repair_info.remarks = #{remarks}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and repair_info.mobile = #{mobile}
+            </if>
+            <if test="star != null">
+                and repair_info.star = #{star}
+            </if>
+            <if test="radioUrl != null and radioUrl != ''">
+                and repair_info.radio_url = #{radioUrl}
+            </if>
+            <if test="evaluateDate != null">
+                and repair_info.evaluate_date = #{evaluateDate}
+            </if>
+            <if test="openid != null and openid != ''">
+                and repair_info.openid = #{openid}
+            </if>
+            <if test="campus != null">
+                and repair_info.campus = #{campus}
+            </if>
+            <if test="finishTime != null and finishTime != ''">
+                and repair_info.finish_time = #{finishTime}
+            </if>
+            <if test="allocatedTime != null and allocatedTime != ''">
+                and repair_info.allocated_time = #{allocatedTime}
+            </if>
+            <if test="detail != null and detail != ''">
+                and repair_info.detail = #{detail}
+            </if>
+            <if test="repairCancelReason != null and repairCancelReason != ''">
+                and repair_info.repair_cancel_reason = #{repairCancelReason}
+            </if>
+            <if test="repairCancelReasonRemark != null and repairCancelReasonRemark != ''">
+                and repair_info.repair_cancel_reason_remark = #{repairCancelReasonRemark}
+            </if>
+            <if test="repairCancelDate != null">
+                and repair_info.repair_cancel_date = #{repairCancelDate}
+            </if>
+            <if test="location != null">
+                and repair_info.location = #{location}
+            </if>
+            <if test="level != null">
+                and repair_info.level = #{level}
+            </if>
+        </where>
+        order by repair_info.id desc
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into repair_info(type, status, repair_date, address, description, image_url, message, evaluate, reason,
+                                consumables, applicant_name, remarks, mobile, star, radio_url, evaluate_date, openid,
+                                campus, finish_time, allocated_time, detail, repair_cancel_reason,
+                                repair_cancel_reason_remark, repair_cancel_date, location, level)
+        values (#{type}, #{status}, #{repairDate}, #{address}, #{description}, #{imageUrl}, #{message}, #{evaluate},
+                #{reason}, #{consumables}, #{applicantName}, #{remarks}, #{mobile}, #{star}, #{radioUrl},
+                #{evaluateDate}, #{openid}, #{campus}, #{finishTime}, #{allocatedTime}, #{detail},
+                #{repairCancelReason}, #{repairCancelReasonRemark}, #{repairCancelDate}, #{location}, #{level})
+    </insert>
+
+    <!--批量新增所有列-->
+    <insert id="insertBatch">
+        insert into repair_info(
+
+        type,
+        status,
+        repair_date,
+        address,
+        description,
+        image_url,
+        message,
+        evaluate,
+        reason,
+        consumables,
+        applicant_name,
+        remarks,
+        mobile,
+        star,
+        radio_url,
+        evaluate_date,
+        openid,
+        campus,
+        finish_time,
+        allocated_time,
+        detail,
+        repair_cancel_reason,
+        repair_cancel_reason_remark,
+        repair_cancel_date,
+        location,
+        level
+        ) values
+        <foreach collection="list" item="item" separator=",">
+            (
+
+            #{item.type},
+            #{item.status},
+            #{item.repairDate},
+            #{item.address},
+            #{item.description},
+            #{item.imageUrl},
+            #{item.message},
+            #{item.evaluate},
+            #{item.reason},
+            #{item.consumables},
+            #{item.applicantName},
+            #{item.remarks},
+            #{item.mobile},
+            #{item.star},
+            #{item.radioUrl},
+            #{item.evaluateDate},
+            #{item.openid},
+            #{item.campus},
+            #{item.finishTime},
+            #{item.allocatedTime},
+            #{item.detail},
+            #{item.repairCancelReason},
+            #{item.repairCancelReasonRemark},
+            #{item.repairCancelDate},
+            #{item.location},
+            #{item.level})
+        </foreach>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update repair_info
+        <set>
+
+            <if test="type != null">
+                type = #{type },
+            </if>
+
+            <if test="status != null">
+                status = #{status },
+            </if>
+
+            <if test="repairDate != null">
+                repair_date = #{repairDate },
+            </if>
+
+            <if test="address != null">
+                address = #{address },
+            </if>
+
+            <if test="description != null">
+                description = #{description },
+            </if>
+
+            <if test="imageUrl != null">
+                image_url = #{imageUrl },
+            </if>
+
+            <if test="message != null">
+                message = #{message },
+            </if>
+
+            <if test="evaluate != null">
+                evaluate = #{evaluate },
+            </if>
+
+            <if test="reason != null">
+                reason = #{reason },
+            </if>
+
+            <if test="consumables != null">
+                consumables = #{consumables },
+            </if>
+
+            <if test="applicantName != null">
+                applicant_name = #{applicantName },
+            </if>
+
+            <if test="remarks != null">
+                remarks = #{remarks },
+            </if>
+
+            <if test="mobile != null">
+                mobile = #{mobile },
+            </if>
+
+            <if test="star != null">
+                star = #{star },
+            </if>
+
+            <if test="radioUrl != null">
+                radio_url = #{radioUrl },
+            </if>
+
+            <if test="evaluateDate != null">
+                evaluate_date = #{evaluateDate },
+            </if>
+
+            <if test="openid != null">
+                openid = #{openid },
+            </if>
+
+            <if test="campus != null">
+                campus = #{campus },
+            </if>
+
+            <if test="finishTime != null">
+                finish_time = #{finishTime },
+            </if>
+
+            <if test="allocatedTime != null">
+                allocated_time = #{allocatedTime },
+            </if>
+
+            <if test="detail != null">
+                detail = #{detail },
+            </if>
+
+            <if test="repairCancelReason != null">
+                repair_cancel_reason = #{repairCancelReason },
+            </if>
+
+            <if test="repairCancelReasonRemark != null">
+                repair_cancel_reason_remark = #{repairCancelReasonRemark },
+            </if>
+
+            <if test="repairCancelDate != null">
+                repair_cancel_date = #{repairCancelDate },
+            </if>
+
+            <if test="location != null">
+                location = #{location },
+            </if>
+
+            <if test="level != null">
+                level = #{level },
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!--批量新增所有列-->
+    <update id="updateBatch">
+        <foreach collection="list" separator=";" item="item">
+            update repair_info
+            <set>
+                <if test="type != null">
+                    type = #{item.type },
+                </if>
+                <if test="status != null">
+                    status = #{item.status },
+                </if>
+                <if test="repairDate != null">
+                    repair_date = #{item.repairDate },
+                </if>
+                <if test="address != null">
+                    address = #{item.address },
+                </if>
+                <if test="description != null">
+                    description = #{item.description },
+                </if>
+                <if test="imageUrl != null">
+                    image_url = #{item.imageUrl },
+                </if>
+                <if test="message != null">
+                    message = #{item.message },
+                </if>
+                <if test="evaluate != null">
+                    evaluate = #{item.evaluate },
+                </if>
+                <if test="reason != null">
+                    reason = #{item.reason },
+                </if>
+                <if test="consumables != null">
+                    consumables = #{item.consumables },
+                </if>
+                <if test="applicantName != null">
+                    applicant_name = #{item.applicantName },
+                </if>
+                <if test="remarks != null">
+                    remarks = #{item.remarks },
+                </if>
+                <if test="mobile != null">
+                    mobile = #{item.mobile },
+                </if>
+                <if test="star != null">
+                    star = #{item.star },
+                </if>
+                <if test="radioUrl != null">
+                    radio_url = #{item.radioUrl },
+                </if>
+                <if test="evaluateDate != null">
+                    evaluate_date = #{item.evaluateDate },
+                </if>
+                <if test="openid != null">
+                    openid = #{item.openid },
+                </if>
+                <if test="campus != null">
+                    campus = #{item.campus },
+                </if>
+                <if test="finishTime != null">
+                    finish_time = #{item.finishTime },
+                </if>
+                <if test="allocatedTime != null">
+                    allocated_time = #{item.allocatedTime },
+                </if>
+                <if test="detail != null">
+                    detail = #{item.detail },
+                </if>
+                <if test="repairCancelReason != null">
+                    repair_cancel_reason = #{item.repairCancelReason },
+                </if>
+                <if test="repairCancelReasonRemark != null">
+                    repair_cancel_reason_remark = #{item.repairCancelReasonRemark },
+                </if>
+                <if test="repairCancelDate != null">
+                    repair_cancel_date = #{item.repairCancelDate },
+                </if>
+                <if test="location != null">
+                    location = #{item.location },
+                </if>
+                <if test="level != null">
+                    level = #{item.level },
+                </if>
+            </set>
+            where id = #{id}
+        </foreach>
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from repair_info
+        where id = #{id}
+    </delete>
+
+</mapper>
