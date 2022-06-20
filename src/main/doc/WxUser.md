@@ -49,7 +49,6 @@ url：/api/wxUser/list/{pageNum}/{pageSize}
 |sign	|必须	|string	|签名sign，header传输|
 |appKey	|必须	|string	|应用key，header传输|
 
-
 1.1.4返回数据
 
 ```
