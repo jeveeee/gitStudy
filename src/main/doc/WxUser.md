@@ -12,7 +12,6 @@ url：/api/wxUser/list/{pageNum}/{pageSize}
 请求方式：GET
 ```
 
-
 1.1.2请求参数
 
 |参数名称 |是否必须 |类型| 描述 |
