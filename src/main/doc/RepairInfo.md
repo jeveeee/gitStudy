@@ -19,8 +19,8 @@ url：/api/repairInfo/list/{pageNum}/{pageSize}
 |-------------|-------------|-------------|:--------------:|
 |pageNum	|必须	|int	|页码|
 |pageSize	|必须	|int	|每页几条数据|
-| id	|可选|	Integer	|主键|
-| type	|可选|	Integer	|报修类型|
+| id	 |可选|	Integer	|主键|
+| type	 |可选|	Integer	|报修类型|
 | status	|可选|	Integer	|报修单状态|
 | repairDate	|可选|	Date	|报修时间|
 | address	|可选|	String	|报修地址|
